@@ -1,0 +1,35 @@
+class A:
+    
+    def __init__(self,withdraw=0,amount=0):
+        self.amount=amount
+        self.withdraw=withdraw
+        self.balance=amount-withdraw
+        
+    @property
+    def balance(self):
+        return self._balance
+    @property
+    def amount(self):
+        return self._amount
+    @property
+    def withdraw(self):
+        return self._withdraw
+        
+    @balance.setter
+    def balance(self,value):
+        self._balance = value
+            
+    @amount.setter
+    def amount(self,value):
+        if value < 0:
+            raise Exception ("amount should never be negative")
+        self._amount = value
+        
+    @withdraw.setter
+    def withdraw(self,value):
+        if self._amount < value:
+            raise Exception("withdraw is not possible")
+        self._withdraw=value
+            
+b=A(amount=50,withdraw=10)
+print(b.balance)
